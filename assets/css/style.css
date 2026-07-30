@@ -208,10 +208,19 @@ html[data-theme="light"] .aurora { opacity: .38; }
 }
 .hero__role strong { color: var(--text); font-weight: 600; }
 .hero__pitch {
-  max-width: 66ch; margin: 15px 0 0;
-  font-size: clamp(.92rem, 1.5vw, 1rem); color: var(--muted);
+  max-width: 70ch; margin: 15px 0 0;
+  font-size: clamp(.9rem, 1.45vw, .97rem); color: var(--muted);
 }
+.hero__pitch > p { margin: 0; }
 .hero__pitch b { color: var(--text); font-weight: 600; }
+
+/* three research directions */
+.pillars { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 7px; }
+.pillars li { position: relative; padding-left: 16px; line-height: 1.55; }
+.pillars li::before {
+  content: ""; position: absolute; left: 0; top: .52em;
+  width: 6px; height: 6px; border-radius: 2px; background: var(--grad);
+}
 
 .cta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
 
