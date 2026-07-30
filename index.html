@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saiyma Sittul Muna — LLM Reliability, Efficiency & Low-Resource NLP</title>
+<meta name="description" content="Saiyma Sittul Muna is a computer science researcher working on reliable and efficient large language models: uncertainty-guided agent repair, quantization and fairness, retrieval-augmented generation, and NLP for low-resource and safety-critical settings.">
+<meta name="author" content="Saiyma Sittul Muna">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Saiyma Sittul Muna — Researcher in Reliable & Efficient LLMs">
+<meta property="og:description" content="Uncertainty-guided agent repair, quantization &amp; fairness, retrieval-augmented generation, and NLP for low-resource and safety-critical settings.">
+<meta property="og:image" content="assets/figures/uncertainty-repair.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b6dff'/%3E%3Cstop offset='1' stop-color='%2335d6f0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='50' font-family='Georgia,serif' font-size='58' font-weight='600' fill='%23fff' text-anchor='middle' dominant-baseline='central'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script>
+  // Set theme before first paint so there is no flash.
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+  // Scroll-reveal hides content, so only arm it when scripting is available.
+  document.documentElement.classList.add('js');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Saiyma Sittul Muna",
+  "email": "mailto:saiymasittul@iut-dhaka.edu",
+  "jobTitle": "Research Assistant",
+  "alumniOf": "Islamic University of Technology",
+  "knowsAbout": ["Large Language Models", "Natural Language Processing", "Mechanistic Interpretability",
+                 "Uncertainty Quantification", "Model Quantization", "Retrieval-Augmented Generation"],
+  "sameAs": ["https://github.com/Muna-sit", "https://www.linkedin.com/in/sittul-muna-a1504a2a9/"]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="nav__in">
+    <a class="brand" href="#top">Saiyma Sittul <span>Muna</span></a>
+
+    <div class="nav__links" id="menu">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <button class="icon-btn" id="theme" aria-label="Toggle colour theme">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+
+    <button class="icon-btn nav__toggle" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero" id="top">
+  <div class="aurora" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+  </div>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <div class="hero__in wrap">
+    <span class="eyebrow"><i class="dot"></i>Applying for CS Ph.D. — Fall 2027</span>
+
+    <h1>Saiyma Sittul<span class="line2">Muna</span></h1>
+
+    <p class="hero__role">
+      Research Assistant, <strong>ELITE Research Lab</strong> &nbsp;·&nbsp; B.Sc. in CSE, <strong>Islamic University of Technology</strong>
+    </p>
+
+    <p class="hero__pitch">
+      I work on making large language models <b>trustworthy where it actually matters</b> — knowing when an
+      agent's reasoning broke and how to repair it, shrinking models small enough to run offline on a phone
+      without making them unsafe, and building the benchmarks that under-served languages have never had.
+    </p>
+
+    <div class="cta">
+      <a class="btn btn--primary" href="assets/CV_Saiyma_Sittul_Muna.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download CV
+      </a>
+      <a class="btn" href="#publications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Research
+      </a>
+      <a class="btn" href="mailto:saiymasittul@iut-dhaka.edu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        Email
+      </a>
+      <a class="btn" href="https://github.com/Muna-sit" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0C17.6 4.6 18.6 5 18.6 5c.7 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        GitHub
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/sittul-muna-a1504a2a9/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>6</b><span>Research works</span></div>
+      <div class="stat"><b>3</b><span>Accepted venues</span></div>
+      <div class="stat"><b>4</b><span>New benchmarks</span></div>
+      <div class="stat"><b>8.0</b><span>IELTS overall</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ RESEARCH FOCUS ══════════ -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">01 — Research</span>
+      <h2>What I want to spend a Ph.D. on</h2>
+      <p>
+        Large models are impressive in aggregate and unreliable in particular. My work sits at the point where
+        that gap becomes dangerous: multi-step agents that fail silently, compressed models that quietly change
+        who they serve well, and languages where no benchmark exists to notice either problem.
+      </p>
+    </div>
+
+    <div class="focus">
+      <article class="fcard rv">
+        <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="5"/></svg></div>
+        <h3>Uncertainty &amp; Failure Repair</h3>
+        <p>When a reasoning chain breaks, which step broke it? I study step-level uncertainty signals as a way to localize failures in LLM agents, and when targeted repair beats simply starting over.</p>
+      </article>
+
+      <article class="fcard rv">
+        <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
+        <h3>Efficient &amp; Fair Quantization</h3>
+        <p>Quantization is treated as a lossless convenience. I investigate the mechanistic story — how low-bit compression rewires internal computation, and which of those changes induce bias.</p>
+      </article>
+
+      <article class="fcard rv">
+        <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3.5 2 4.5V17a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-3.5c1-1 2-2.5 2-4.5a7 7 0 0 0-7-7zM9 22h6"/></svg></div>
+        <h3>Mechanistic Interpretability</h3>
+        <p>Aggregate benchmarks hide mechanisms. I want to open the model up — attributing behaviour to circuits and representations rather than inferring it from output-level scores alone.</p>
+      </article>
+
+      <article class="fcard rv">
+        <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3>Retrieval-Augmented Generation</h3>
+        <p>Retrieval routing, iterative feedback, evidence aggregation and agentic policies — evaluated head-to-head rather than assumed, in a domain where a wrong answer has a cost.</p>
+      </article>
+
+      <article class="fcard rv">
+        <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div>
+        <h3>Low-Resource Languages</h3>
+        <p>Bengali biomedical QA, Bengali sign language instruction generation. Building the first benchmarks for communities that current evaluation simply does not see.</p>
+      </article>
+
+      <article class="fcard rv">
+        <div class="fcard__ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Safety-Critical Deployment</h3>
+        <p>First-aid guidance is needed exactly where connectivity is not. I build and rigorously evaluate assistants that must run on-device, offline, and never give dangerous advice.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══════════ PUBLICATIONS ══════════ -->
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">02 — Publications</span>
+      <h2>Selected research</h2>
+      <p>Six works across LLM agents, model efficiency, retrieval and low-resource NLP. Every figure below is from the paper itself — click to enlarge.</p>
+    </div>
+
+    <div class="filters rv" role="group" aria-label="Filter publications">
+      <button data-f="all" aria-pressed="true">All (6)</button>
+      <button data-f="accepted" aria-pressed="false">Accepted (3)</button>
+      <button data-f="review" aria-pressed="false">Under review (2)</button>
+      <button data-f="ongoing" aria-pressed="false">Ongoing (1)</button>
+    </div>
+
+    <div class="pubs">
+
+      <!-- 1 · Uncertainty-guided repair -->
+      <article class="pub rv" data-cat="review">
+        <figure class="pub__fig" data-cap="Uncertainty-guided trajectory repair: failed ReAct trajectories are scored step-by-step, a localization rule predicts the broken step, and repair strategies are compared under matched token budgets.">
+          <img src="assets/figures/uncertainty-repair.png" alt="Framework diagram: diagnose step-level uncertainty, choose a recovery strategy, then evaluate repair success, localization, efficiency and statistics." loading="lazy" width="1500" height="967">
+          <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
+        </figure>
+        <div class="pub__body">
+          <div class="pub__tags">
+            <span class="tag tag--review">Under review</span>
+            <span class="tag">AAAI-27</span>
+            <span class="tag">LLM Agents</span>
+          </div>
+          <h3>Uncertainty-Guided Error Repair in Multi-Step Language Model Agents: When to Target, When to Restart</h3>
+          <p class="pub__venue">Submitted to <em>AAAI Conference on Artificial Intelligence (AAAI-27)</em></p>
+          <p class="pub__sum">
+            When a multi-step agent fails, should it redo the one step that went wrong, or restart from scratch?
+            A systematic answer across three benchmarks, eight open-weight models and 33 repair strategies.
+          </p>
+          <ul class="pub__hl">
+            <li>Scored every step of failed ReAct trajectories with <b>five uncertainty metrics</b> and six localization rules, including three novel <b>cascade-aware</b> rules that account for forward error propagation.</li>
+            <li>Found the optimal strategy is <b>task-dependent</b>: full restart beats even oracle-targeted repair on long multi-hop chains, while targeted repair with backtracking wins on shorter fact-verification trajectories.</li>
+            <li>Evaluated on HotpotQA, FEVER and MuSiQue over <b>7B–72B</b> models with paired statistical tests, three seeds and a validated 72B judge.</li>
+          </ul>
+          <div class="pub__links">
+            <a class="link-btn" href="papers/uncertainty-guided-repair.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+              Paper (PDF)
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 · HandsOnAid -->
+      <article class="pub pub--flip rv" data-cat="review">
+        <figure class="pub__fig" data-cap="HandsOnAid system overview: FirstAidQA fine-tunes Gemma 2B via QLoRA; at answer time an optional BM25 retrieval step feeds on-device generation — entirely offline on a phone.">
+          <img src="assets/figures/handsonaid.png" alt="Pipeline: FirstAidQA 5,550 Q-A pairs fine-tune Gemma 2B with QLoRA; user question flows through optional BM25 top-1 retrieval to on-device generation, all offline on the phone." loading="lazy" width="920" height="397">
+          <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
+        </figure>
+        <div class="pub__body">
+          <div class="pub__tags">
+            <span class="tag tag--review">Under review</span>
+            <span class="tag">INLG</span>
+            <span class="tag">On-device LLMs</span>
+          </div>
+          <h3>HandsOnAid: Building and Evaluating an Offline First-Aid Assistant When No Help is Coming</h3>
+          <p class="pub__venue">Submitted to the <em>19th International Conference on Natural Language Generation (INLG)</em></p>
+          <p class="pub__sum">
+            LLMs are least accessible exactly where first-aid guidance is most urgent. A complete offline
+            assistant that runs on a mid-range smartphone — and evidence that evaluation design changes the conclusions.
+          </p>
+          <ul class="pub__hl">
+            <li>Fine-tuned <b>Gemma 2B with QLoRA</b> on the 5,550-pair FirstAidQA corpus, deployable fully offline on a phone.</li>
+            <li>Rebuilt the test set around the deployment setting, replacing <b>68.3%</b> of EMS-dependent references with expert-validated executable guidance.</li>
+            <li>Introduced <b>blinded per-item scoring by three frontier LLM judges</b>: fine-tuning gained 0.76 points on a 5-point scale, while retrieval added nothing beyond it and 4-bit matched 8-bit quantization.</li>
+          </ul>
+          <div class="pub__links">
+            <a class="link-btn" href="papers/handsonaid.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+              Paper (PDF)
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 · Bangla biomedical RAG -->
+      <article class="pub rv" data-cat="accepted">
+        <figure class="pub__fig" data-cap="The Bangla biomedical RAG framework: an OCR-derived textbook corpus feeds a vector store, and five retrieval strategies — Iterative, Zero-Shot Fallback, Agentic and Aggregate RAG — are benchmarked head-to-head.">
+          <img src="assets/figures/rag-bangla.png" alt="Methodological workflow of the Bangla RAG framework showing data processing, chunking, vectorization and indexing, alongside Iterative RAG, RAG with Fallback, Agentic RAG and Aggregate RAG pipelines." loading="lazy" width="1500" height="861">
+          <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
+        </figure>
+        <div class="pub__body">
+          <div class="pub__tags">
+            <span class="tag tag--ok">Accepted</span>
+            <span class="tag">IEEE FMLDS 2026</span>
+            <span class="tag">RAG</span>
+          </div>
+          <h3>Evaluating Retrieval-Augmented Generation Variants for Biomedical Multiple-Choice Question Answering</h3>
+          <p class="pub__venue">Accepted to <em>IEEE International Conference on Future Machine Learning and Data Science 2026</em></p>
+          <p class="pub__sum">
+            Bangla speakers had no large-scale biomedical QA benchmark, so reliable medical AI could not even be
+            measured for them. This work builds both the benchmarks and the retrieval systems to test on them.
+          </p>
+          <ul class="pub__hl">
+            <li>Introduced <b>BanglaMedQA</b> and <b>BanglaMMedBench</b> — the first large-scale Bangla biomedical MCQ datasets.</li>
+            <li>Constructed a Bangla medical textbook retrieval corpus via <b>OCR</b>, combining textbook and web retrieval.</li>
+            <li>Benchmarked Traditional, Zero-Shot Fallback, Iterative Feedback, Aggregate and Agentic RAG; <b>Agentic RAG reached 89.54%</b> accuracy with gpt-oss-120b, with the strongest rationale quality.</li>
+          </ul>
+          <div class="pub__links">
+            <a class="link-btn" href="papers/bangla-biomedical-rag.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+              Paper (PDF)
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 · FirstAidQA -->
+      <article class="pub pub--flip rv" data-cat="accepted">
+        <figure class="pub__fig" data-cap="FirstAidQA task taxonomy — the dataset spans nine categories from CPR and road traffic accidents to patient examination and spinal injuries.">
+          <img src="assets/figures/firstaidqa.png" alt="Table of FirstAidQA categories: general emergency procedures, CPR, road traffic accidents, moving casualties, first aid equipment and techniques, family and community safety, patient examination and monitoring." loading="lazy" width="1500" height="742">
+          <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
+        </figure>
+        <div class="pub__body">
+          <div class="pub__tags">
+            <span class="tag tag--ok">Accepted</span>
+            <span class="tag">NeurIPS 2025 Workshop</span>
+            <span class="tag">First author</span>
+          </div>
+          <h3>FirstAidQA: A Synthetic Dataset for First Aid and Emergency Response in Low-Connectivity Settings</h3>
+          <p class="pub__venue">Accepted to the <em>5th Muslims in ML Workshop</em>, co-located with <em>NeurIPS 2025</em></p>
+          <p class="pub__authors"><b>Saiyma Sittul Muna*</b>, Rezwan Islam Salvi*, Mushfiqur Rahman Mushfique*, Ajwad Abrar &nbsp;<span style="opacity:.7">(*equal contribution)</span></p>
+          <p class="pub__sum">
+            In an emergency, every second counts — but the models that could help are too heavy for the low-tier
+            devices first responders actually carry, and no dataset existed to train lighter ones.
+          </p>
+          <ul class="pub__hl">
+            <li>Released <b>5,500 expert-validated question–answer pairs</b> spanning nine categories of first aid and emergency response.</li>
+            <li>Built an <b>LLM-driven synthetic generation and validation pipeline</b> — contextual chunking, filtering and human review for safety-critical instruction tuning.</li>
+            <li>Publicly released on Hugging Face to support offline-capable SLMs for emergency settings.</li>
+          </ul>
+          <div class="pub__links">
+            <a class="link-btn" href="papers/firstaidqa.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+              Paper (PDF)
+            </a>
+            <a class="link-btn" href="https://huggingface.co/datasets/i-am-mushfiq/FirstAidQA" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+              Dataset
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 · BdSLIG -->
+      <article class="pub rv" data-cat="accepted">
+        <figure class="pub__fig" data-cap="Sign Parameter-Infused prompting: each Bengali sign is described through standard sign parameters — hand shape, motion, orientation, location and non-manual features — which are injected directly into the VLM prompt.">
+          <img src="assets/figures/bdslig.png" alt="Three frames of a Bengali sign for 'toothpaste', each annotated with structured sign parameters such as hand shape, movement, palm orientation and mouth position." loading="lazy" width="1500" height="364">
+          <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
+        </figure>
+        <div class="pub__body">
+          <div class="pub__tags">
+            <span class="tag tag--ok">Accepted</span>
+            <span class="tag">ICCV 2025 Workshop</span>
+            <span class="tag">Vision-Language</span>
+          </div>
+          <h3>Prompting with Sign Parameters for Low-Resource Sign Language Instruction Generation</h3>
+          <p class="pub__venue">Accepted to the <em>ICCV 2025 Workshop on Computer Vision for Accessibility</em></p>
+          <p class="pub__authors">Md. Tariquzzaman, Md Farhan Ishmam, <b>Saiyma Sittul Muna</b>, Md. Kamrul Hasan, Hasan Mahmud</p>
+          <p class="pub__sum">
+            Sign language recognition only solves half of the conversation. Instruction generation solves the other
+            half — teaching non-signers to produce gestures — and Bengali Sign Language had no dataset for it.
+          </p>
+          <ul class="pub__hl">
+            <li>Introduced <b>BdSLIG</b>, the first Bengali Sign Language Instruction Generation benchmark, which also probes VLMs on genuine <b>long-tail visual concepts</b> absent from pre-training.</li>
+            <li>Proposed <b>Sign Parameter-Infused (SPI) prompting</b>, embedding linguistic sign parameters — hand shape, motion, orientation — directly into the prompt.</li>
+            <li>Produced markedly more structured and reproducible zero-shot instructions than free-form vanilla prompting.</li>
+          </ul>
+          <div class="pub__links">
+            <a class="link-btn" href="papers/bdslig-sign-parameter-prompting.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+              Paper (PDF)
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 · Ongoing -->
+      <article class="pub pub--flip rv" data-cat="ongoing">
+        <figure class="pub__fig" style="background: linear-gradient(135deg, #1b1435, #0d2b33); cursor: default;">
+          <svg viewBox="0 0 320 200" style="width:100%;max-width:340px" role="img" aria-label="Diagram: a full-precision model is quantized to low bit-width, and interpretability analysis probes which internal mechanism changes induce bias.">
+            <defs>
+              <linearGradient id="q1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b6dff"/><stop offset="1" stop-color="#35d6f0"/></linearGradient>
+            </defs>
+            <g fill="none" stroke="url(#q1)" stroke-width="1.6">
+              <rect x="14" y="58" width="74" height="84" rx="9"/>
+              <rect x="123" y="58" width="74" height="84" rx="9"/>
+              <rect x="232" y="58" width="74" height="84" rx="9"/>
+              <path d="M88 100h35M197 100h35" stroke-dasharray="4 4"/>
+            </g>
+            <g fill="#8b6dff" opacity=".85">
+              <circle cx="34" cy="82" r="3.4"/><circle cx="51" cy="82" r="3.4"/><circle cx="68" cy="82" r="3.4"/>
+              <circle cx="34" cy="100" r="3.4"/><circle cx="51" cy="100" r="3.4"/><circle cx="68" cy="100" r="3.4"/>
+              <circle cx="34" cy="118" r="3.4"/><circle cx="51" cy="118" r="3.4"/><circle cx="68" cy="118" r="3.4"/>
+            </g>
+            <g fill="#35d6f0" opacity=".85">
+              <circle cx="143" cy="82" r="3.4"/><circle cx="160" cy="82" r="2"/><circle cx="177" cy="82" r="3.4"/>
+              <circle cx="143" cy="100" r="2"/><circle cx="160" cy="100" r="3.4"/><circle cx="177" cy="100" r="2"/>
+              <circle cx="143" cy="118" r="3.4"/><circle cx="160" cy="118" r="2"/><circle cx="177" cy="118" r="3.4"/>
+            </g>
+            <g stroke="#ff6ec7" stroke-width="1.6" fill="none">
+              <circle cx="269" cy="94" r="15"/><path d="M280 105l12 12"/>
+            </g>
+            <g fill="#9d9db2" font-family="Inter,sans-serif" font-size="10.5" text-anchor="middle">
+              <text x="51" y="163">Full precision</text>
+              <text x="160" y="163">Quantized</text>
+              <text x="269" y="163">Bias mechanism</text>
+            </g>
+          </svg>
+        </figure>
+        <div class="pub__body">
+          <div class="pub__tags">
+            <span class="tag tag--wip">Ongoing</span>
+            <span class="tag">Interpretability</span>
+            <span class="tag">Fairness</span>
+          </div>
+          <h3>Building Fairness-Aware Quantized Large Language Models</h3>
+          <p class="pub__venue">Ongoing research project</p>
+          <p class="pub__sum">
+            Quantization is usually justified by an accuracy number that barely moves. But aggregate accuracy can
+            hold steady while the model gets measurably worse for some groups — and nobody has explained the mechanism.
+          </p>
+          <ul class="pub__hl">
+            <li>Investigating the <b>mechanistic and explainability</b> aspects of neural network quantization: how low-bit compression modifies the internal computations that drive fairness.</li>
+            <li>Analyzing benchmark quantization methods to isolate <b>bias-inducing mechanisms</b> rather than only bias outcomes.</li>
+            <li>Using those findings to design a <b>fairness-aware quantization method</b> that preserves efficiency without shifting who the model works for.</li>
+          </ul>
+          <div class="pub__links">
+            <span class="link-btn" style="opacity:.65">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              Manuscript in preparation
+            </span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══════════ EXPERIENCE ══════════ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">03 — Experience &amp; Education</span>
+      <h2>Where I have worked</h2>
+    </div>
+
+    <div class="tl">
+      <div class="tl__item tl__item--now rv">
+        <span class="tl__when">Jun 2026 — Present</span>
+        <h3>Research Assistant</h3>
+        <p class="tl__org">ELITE Research Lab LLC <span>· New York, USA</span></p>
+        <p>Research on multimodal representation learning, uncertainty-aware learning, probabilistic inference and autonomous agentic systems for trustworthy AI. Design and implement large-scale experimental pipelines for calibration, uncertainty propagation, robustness under distribution shift and reproducible model assessment.</p>
+      </div>
+
+      <div class="tl__item rv">
+        <span class="tl__when">Jun 2021 — Oct 2025</span>
+        <h3>B.Sc. in Computer Science and Engineering</h3>
+        <p class="tl__org">Islamic University of Technology (IUT) <span>· Gazipur, Bangladesh</span></p>
+        <p>CGPA 3.65 / 4.00. Undergraduate research across sign language understanding, biomedical retrieval and safety-critical language generation.</p>
+      </div>
+
+      <div class="tl__item rv">
+        <span class="tl__when">Jul 2024 — Oct 2024</span>
+        <h3>Software Engineer</h3>
+        <p class="tl__org">Technovative Solutions Limited <span>· Dhaka, Bangladesh</span></p>
+        <p>Worked with AI technologies including large language models and retrieval-augmented generation pipelines, with a research-oriented focus on accuracy and depth.</p>
+      </div>
+
+      <div class="tl__item rv">
+        <span class="tl__when">Jun 2024 — Jul 2024</span>
+        <h3>Intern</h3>
+        <p class="tl__org">Teletalk <span>· Dhaka, Bangladesh</span></p>
+        <p>Streamlined billing processes for customer accounts and provided IT support and troubleshooting for internal software and hardware.</p>
+      </div>
+
+      <div class="tl__item rv">
+        <span class="tl__when">Feb 2018 — Jun 2018</span>
+        <h3>Part-time Teacher</h3>
+        <p class="tl__org">ALOHA <span>· Dhaka, Bangladesh</span></p>
+        <p>Delivered lessons using ALOHA mental-arithmetic methodology and maintained an engaging learning environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══════════ PROJECTS ══════════ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">04 — Projects</span>
+      <h2>Things I built</h2>
+      <p>Engineering work outside the papers — mostly applied ML and mobile systems aimed at a concrete user.</p>
+    </div>
+
+    <div class="projects">
+      <a class="proj rv" href="https://github.com/smad-1/Speech-Emotion-Recognition-using-MELD" target="_blank" rel="noopener">
+        <div class="proj__top"><h3>MoodDecoder</h3><span class="proj__yr">2025</span></div>
+        <p>Speech emotion recognition comparing Wav2Vec 2.0 against HuBERT on the MELD dataset, with a real-time detection interface.</p>
+        <div class="proj__stack"><span class="chip">Wav2Vec 2.0</span><span class="chip">HuBERT</span><span class="chip">Gradio</span></div>
+        <span class="proj__link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+
+      <a class="proj rv" href="https://github.com/smad-1/DigitAid" target="_blank" rel="noopener">
+        <div class="proj__top"><h3>DigitAid</h3><span class="proj__yr">2024</span></div>
+        <p>An accessibility-focused app that recognises handwritten digits produced by dyslexic writers, where standard recognisers fail.</p>
+        <div class="proj__stack"><span class="chip">Machine Learning</span><span class="chip">Accessibility</span></div>
+        <span class="proj__link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+
+      <a class="proj rv" href="https://github.com/Zameon/safety_syncc" target="_blank" rel="noopener">
+        <div class="proj__top"><h3>Safety Sync</h3><span class="proj__yr">2023</span></div>
+        <p>Personal-safety mobile app with live location sharing, friend networks, self-defence tutorials and mood-based meditation.</p>
+        <div class="proj__stack"><span class="chip">Flutter</span><span class="chip">Firebase</span></div>
+        <span class="proj__link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+
+      <a class="proj rv" href="https://github.com/smad-1/rapidred" target="_blank" rel="noopener">
+        <div class="proj__top"><h3>Rapid Red</h3><span class="proj__yr">2023</span></div>
+        <p>Connects emergency patients with nearby blood donors to cut response time in critical situations.</p>
+        <div class="proj__stack"><span class="chip">Java</span><span class="chip">Emergency Response</span></div>
+        <span class="proj__link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+
+      <a class="proj rv" href="https://github.com/ZannatulElma/Web_ShapeShift" target="_blank" rel="noopener">
+        <div class="proj__top"><h3>Shape Shift</h3><span class="proj__yr">2023</span></div>
+        <p>Health and wellness platform bringing together workout tutorials, meal planning and meditation resources.</p>
+        <div class="proj__stack"><span class="chip">Web</span><span class="chip">MySQL</span></div>
+        <span class="proj__link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══════════ SKILLS & AWARDS ══════════ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">05 — Toolkit &amp; Recognition</span>
+      <h2>Skills and awards</h2>
+    </div>
+
+    <div class="two">
+      <div class="rv">
+        <div class="skill-row">
+          <h4>Programming</h4>
+          <div><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">Dart</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span><span class="chip">LaTeX</span></div>
+        </div>
+        <div class="skill-row">
+          <h4>ML &amp; Deep Learning</h4>
+          <div><span class="chip">PyTorch</span><span class="chip">Hugging Face Transformers</span><span class="chip">PEFT / QLoRA</span><span class="chip">Model quantization</span><span class="chip">RAG pipelines</span><span class="chip">Gradio</span></div>
+        </div>
+        <div class="skill-row">
+          <h4>Scientific Computing &amp; Data</h4>
+          <div><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">SciPy</span><span class="chip">Statsmodels</span><span class="chip">MATLAB</span></div>
+        </div>
+        <div class="skill-row">
+          <h4>HPC &amp; Developer Tools</h4>
+          <div><span class="chip">Linux</span><span class="chip">SLURM</span><span class="chip">CUDA</span><span class="chip">GPU acceleration</span><span class="chip">Git</span><span class="chip">Jupyter</span><span class="chip">Google Colab</span></div>
+        </div>
+        <div class="skill-row">
+          <h4>Databases</h4>
+          <div><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Firebase</span><span class="chip">Oracle</span></div>
+        </div>
+        <div class="skill-row">
+          <h4>Languages</h4>
+          <div><span class="chip">Bengali</span><span class="chip">English</span><span class="chip">Hindi</span><span class="chip">Spanish</span></div>
+        </div>
+      </div>
+
+      <div class="rv">
+        <div class="award">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          <p><b>Mentee, Banglalink Womentor 6.0</b>A national mentorship programme for women in STEM.</p>
+        </div>
+        <div class="award">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          <p><b>60% Scholarship — ISCEA PTAK Prize Case Competition 2023</b>Awarded for performance in the international supply-chain case competition.</p>
+        </div>
+        <div class="award">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          <p><b>2nd Runners-up — AIUB Idea Contest</b>“Introduction to Robotics” presented idea contest.</p>
+        </div>
+        <div class="award">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          <p><b>2nd Runners-up — ALOHA International Mental Arithmetic Competition 2012</b></p>
+        </div>
+
+        <div class="ielts">
+          <h4>IELTS — Overall 8.0</h4>
+          <div class="ielts__grid">
+            <div><b>9.0</b><span>Listening</span></div>
+            <div><b>8.0</b><span>Reading</span></div>
+            <div><b>7.5</b><span>Writing</span></div>
+            <div><b>7.0</b><span>Speaking</span></div>
+            <div><b>8.0</b><span>Overall</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="rv">
+      <span class="sec-num">06 — Contact</span>
+      <h2>Let's talk about research</h2>
+      <p>
+        I am applying for Computer Science Ph.D. programmes for <b>Fall 2027</b>. If your lab works on LLM
+        reliability, interpretability, efficiency or NLP for under-served languages, I would love to hear from you.
+      </p>
+      <a class="mail" href="mailto:saiymasittul@iut-dhaka.edu">saiymasittul@iut-dhaka.edu</a>
+
+      <div class="socials">
+        <a class="btn" href="assets/CV_Saiyma_Sittul_Muna.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Curriculum Vitae
+        </a>
+        <a class="btn" href="https://github.com/Muna-sit" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0C17.6 4.6 18.6 5 18.6 5c.7 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/sittul-muna-a1504a2a9/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Saiyma Sittul Muna</span>
+    <span>Dhaka, Bangladesh</span>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Enlarged figure">
+  <button class="lb__x" id="lbx" aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <div>
+    <img id="lbimg" src="" alt="">
+    <p class="lb__cap" id="lbcap"></p>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
