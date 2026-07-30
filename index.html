@@ -95,9 +95,10 @@
     </p>
 
     <p class="hero__pitch">
-      I work on making large language models <b>trustworthy where it actually matters</b> — knowing when an
-      agent's reasoning broke and how to repair it, shrinking models small enough to run offline on a phone
-      without making them unsafe, and building the benchmarks that under-served languages have never had.
+      My research targets <b>reliability and efficiency in large language models</b>: step-level uncertainty
+      estimation for localizing and repairing failures in multi-step ReAct agents, the mechanistic effects of
+      low-bit quantization on fairness, and retrieval-augmented generation under the constraints of
+      safety-critical, low-resource deployment.
     </p>
 
     <div class="cta">
@@ -126,7 +127,7 @@
     <div class="stats">
       <div class="stat"><b>6</b><span>Research works</span></div>
       <div class="stat"><b>3</b><span>Accepted venues</span></div>
-      <div class="stat"><b>4</b><span>New benchmarks</span></div>
+      <div class="stat"><b>3.65</b><span>CGPA / 4.00</span></div>
       <div class="stat"><b>8.0</b><span>IELTS overall</span></div>
     </div>
   </div>
@@ -220,8 +221,8 @@
           <h3>Uncertainty-Guided Error Repair in Multi-Step Language Model Agents: When to Target, When to Restart</h3>
           <p class="pub__venue">Submitted to <em>AAAI Conference on Artificial Intelligence (AAAI-27)</em></p>
           <p class="pub__sum">
-            When a multi-step agent fails, should it redo the one step that went wrong, or restart from scratch?
-            A systematic answer across three benchmarks, eight open-weight models and 33 repair strategies.
+            When a multi-step agent fails, should it redo the broken step or restart? A systematic answer
+            across 3 benchmarks, 8 open-weight models and 33 repair strategies.
           </p>
           <ul class="pub__hl">
             <li>Scored every step of failed ReAct trajectories with <b>five uncertainty metrics</b> and six localization rules, including three novel <b>cascade-aware</b> rules that account for forward error propagation.</li>
@@ -238,7 +239,7 @@
       </article>
 
       <!-- 2 · HandsOnAid -->
-      <article class="pub pub--flip rv" data-cat="review">
+      <article class="pub rv" data-cat="review">
         <figure class="pub__fig" data-cap="HandsOnAid system overview: FirstAidQA fine-tunes Gemma 2B via QLoRA; at answer time an optional BM25 retrieval step feeds on-device generation — entirely offline on a phone.">
           <img src="assets/figures/handsonaid.png" alt="Pipeline: FirstAidQA 5,550 Q-A pairs fine-tune Gemma 2B with QLoRA; user question flows through optional BM25 top-1 retrieval to on-device generation, all offline on the phone." loading="lazy" width="920" height="397">
           <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
@@ -252,8 +253,8 @@
           <h3>HandsOnAid: Building and Evaluating an Offline First-Aid Assistant When No Help is Coming</h3>
           <p class="pub__venue">Submitted to the <em>19th International Conference on Natural Language Generation (INLG)</em></p>
           <p class="pub__sum">
-            LLMs are least accessible exactly where first-aid guidance is most urgent. A complete offline
-            assistant that runs on a mid-range smartphone — and evidence that evaluation design changes the conclusions.
+            A first-aid assistant that runs entirely on a mid-range phone — plus evidence that evaluation
+            design substantially changes the conclusions.
           </p>
           <ul class="pub__hl">
             <li>Fine-tuned <b>Gemma 2B with QLoRA</b> on the 5,550-pair FirstAidQA corpus, deployable fully offline on a phone.</li>
@@ -284,8 +285,8 @@
           <h3>Evaluating Retrieval-Augmented Generation Variants for Biomedical Multiple-Choice Question Answering</h3>
           <p class="pub__venue">Accepted to <em>IEEE International Conference on Future Machine Learning and Data Science 2026</em></p>
           <p class="pub__sum">
-            Bangla speakers had no large-scale biomedical QA benchmark, so reliable medical AI could not even be
-            measured for them. This work builds both the benchmarks and the retrieval systems to test on them.
+            Bangla had no large-scale biomedical QA benchmark — this work builds both the benchmarks and the
+            retrieval systems evaluated on them.
           </p>
           <ul class="pub__hl">
             <li>Introduced <b>BanglaMedQA</b> and <b>BanglaMMedBench</b> — the first large-scale Bangla biomedical MCQ datasets.</li>
@@ -302,7 +303,7 @@
       </article>
 
       <!-- 4 · FirstAidQA -->
-      <article class="pub pub--flip rv" data-cat="accepted">
+      <article class="pub rv" data-cat="accepted">
         <figure class="pub__fig" data-cap="FirstAidQA task taxonomy — the dataset spans nine categories from CPR and road traffic accidents to patient examination and spinal injuries.">
           <img src="assets/figures/firstaidqa.png" alt="Table of FirstAidQA categories: general emergency procedures, CPR, road traffic accidents, moving casualties, first aid equipment and techniques, family and community safety, patient examination and monitoring." loading="lazy" width="1500" height="742">
           <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
@@ -317,8 +318,8 @@
           <p class="pub__venue">Accepted to the <em>5th Muslims in ML Workshop</em>, co-located with <em>NeurIPS 2025</em></p>
           <p class="pub__authors"><b>Saiyma Sittul Muna*</b>, Rezwan Islam Salvi*, Mushfiqur Rahman Mushfique*, Ajwad Abrar &nbsp;<span style="opacity:.7">(*equal contribution)</span></p>
           <p class="pub__sum">
-            In an emergency, every second counts — but the models that could help are too heavy for the low-tier
-            devices first responders actually carry, and no dataset existed to train lighter ones.
+            The models that could help in an emergency are too heavy for the low-tier devices first responders
+            carry, and no dataset existed to train lighter ones.
           </p>
           <ul class="pub__hl">
             <li>Released <b>5,500 expert-validated question–answer pairs</b> spanning nine categories of first aid and emergency response.</li>
@@ -354,8 +355,8 @@
           <p class="pub__venue">Accepted to the <em>ICCV 2025 Workshop on Computer Vision for Accessibility</em></p>
           <p class="pub__authors">Md. Tariquzzaman, Md Farhan Ishmam, <b>Saiyma Sittul Muna</b>, Md. Kamrul Hasan, Hasan Mahmud</p>
           <p class="pub__sum">
-            Sign language recognition only solves half of the conversation. Instruction generation solves the other
-            half — teaching non-signers to produce gestures — and Bengali Sign Language had no dataset for it.
+            Recognition solves only half the conversation; instruction generation teaches non-signers to produce
+            gestures — and Bengali Sign Language had no dataset for it.
           </p>
           <ul class="pub__hl">
             <li>Introduced <b>BdSLIG</b>, the first Bengali Sign Language Instruction Generation benchmark, which also probes VLMs on genuine <b>long-tail visual concepts</b> absent from pre-training.</li>
@@ -372,7 +373,7 @@
       </article>
 
       <!-- 6 · Ongoing -->
-      <article class="pub pub--flip rv" data-cat="ongoing">
+      <article class="pub rv" data-cat="ongoing">
         <figure class="pub__fig" style="background: linear-gradient(135deg, #1b1435, #0d2b33); cursor: default;">
           <svg viewBox="0 0 320 200" style="width:100%;max-width:340px" role="img" aria-label="Diagram: a full-precision model is quantized to low bit-width, and interpretability analysis probes which internal mechanism changes induce bias.">
             <defs>
@@ -413,8 +414,8 @@
           <h3>Building Fairness-Aware Quantized Large Language Models</h3>
           <p class="pub__venue">Ongoing research project</p>
           <p class="pub__sum">
-            Quantization is usually justified by an accuracy number that barely moves. But aggregate accuracy can
-            hold steady while the model gets measurably worse for some groups — and nobody has explained the mechanism.
+            Aggregate accuracy can hold steady under quantization while the model gets measurably worse for
+            some groups — and nobody has explained the mechanism.
           </p>
           <ul class="pub__hl">
             <li>Investigating the <b>mechanistic and explainability</b> aspects of neural network quantization: how low-bit compression modifies the internal computations that drive fairness.</li>
@@ -440,7 +441,7 @@
 <section id="experience">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="sec-num">03 — Experience &amp; Education</span>
+      <span class="sec-num">03 — Experience</span>
       <h2>Where I have worked</h2>
     </div>
 
@@ -450,13 +451,6 @@
         <h3>Research Assistant</h3>
         <p class="tl__org">ELITE Research Lab LLC <span>· New York, USA</span></p>
         <p>Research on multimodal representation learning, uncertainty-aware learning, probabilistic inference and autonomous agentic systems for trustworthy AI. Design and implement large-scale experimental pipelines for calibration, uncertainty propagation, robustness under distribution shift and reproducible model assessment.</p>
-      </div>
-
-      <div class="tl__item rv">
-        <span class="tl__when">Jun 2021 — Oct 2025</span>
-        <h3>B.Sc. in Computer Science and Engineering</h3>
-        <p class="tl__org">Islamic University of Technology (IUT) <span>· Gazipur, Bangladesh</span></p>
-        <p>CGPA 3.65 / 4.00. Undergraduate research across sign language understanding, biomedical retrieval and safety-critical language generation.</p>
       </div>
 
       <div class="tl__item rv">
