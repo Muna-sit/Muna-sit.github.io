@@ -2,16 +2,8 @@
 (function () {
   "use strict";
 
-  var root = document.documentElement;
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-
-  /* ---------- theme ---------- */
-  $("#theme").addEventListener("click", function () {
-    var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-  });
 
   /* ---------- mobile menu ---------- */
   var burger = $("#burger");
