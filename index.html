@@ -194,31 +194,32 @@
 
     <div class="pubs">
 
-      <!-- 1 · Uncertainty-guided repair -->
+      <!-- 1 · Perplexity-guided repair -->
       <article class="pub rv" data-cat="review">
-        <figure class="pub__fig" data-cap="Uncertainty-guided trajectory repair: failed ReAct trajectories are scored step-by-step, a localization rule predicts the broken step, and repair strategies are compared under matched token budgets.">
-          <img src="assets/figures/uncertainty-repair.png" alt="Framework diagram: diagnose step-level uncertainty, choose a recovery strategy, then evaluate repair success, localization, efficiency and statistics." loading="lazy" width="1500" height="967">
+        <figure class="pub__fig" data-cap="Trajectory repair vs. restart: after an agent's reasoning trajectory fails, a step is chosen as the repair origin and the agent regenerates from there — compared here against discarding the trajectory and restarting from scratch.">
+          <img src="assets/figures/uncertainty-repair.png" alt="Diagram contrasting targeted step repair, which resumes from a chosen origin step, against full restart, which discards the trajectory and begins again." loading="lazy" width="1500" height="967">
           <span class="pub__zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg>Enlarge</span>
         </figure>
         <div class="pub__body">
           <div class="pub__tags">
             <span class="tag tag--review">Under review</span>
-            <span class="tag">AAAI-27</span>
+            <span class="tag">ICLR 2027</span>
             <span class="tag">LLM Agents</span>
           </div>
-          <h3>Uncertainty-Guided Error Repair in Multi-Step Language Model Agents: When to Target, When to Restart</h3>
-          <p class="pub__venue">Submitted to <em>AAAI Conference on Artificial Intelligence (AAAI-27)</em></p>
+          <h3>A Controlled Test of Perplexity-Based Trajectory Repair: Two Model Families, Three QA Datasets, and an Exactly Balanced Origin Control</h3>
+          <p class="pub__venue">Submitted to <em>International Conference on Learning Representations (ICLR 2027)</em></p>
           <p class="pub__sum">
-            When a multi-step agent fails, should it redo the broken step or restart? A systematic answer
-            across 3 benchmarks, 8 open-weight models and 33 repair strategies.
+            When a multi-step agent fails, does picking the repair point by model uncertainty actually
+            beat just restarting? A prespecified, fully audited study says: not clearly, and that
+            negative result is the finding worth trusting.
           </p>
           <ul class="pub__hl">
-            <li>Scored every step of failed ReAct trajectories with <b>five uncertainty metrics</b> and six localization rules, including three novel <b>cascade-aware</b> rules that account for forward error propagation.</li>
-            <li>Found the optimal strategy is <b>task-dependent</b>: full restart beats even oracle-targeted repair on long multi-hop chains, while targeted repair with backtracking wins on shorter fact-verification trajectories.</li>
-            <li>Evaluated on HotpotQA, FEVER and MuSiQue over <b>7B–72B</b> models with paired statistical tests, three seeds and a validated 72B judge.</li>
+            <li>Ran a <b>prespecified, Holm-corrected</b> comparison of highest-perplexity backtracking against restart and positional controls, on <b>two model families</b> (Qwen2.5-32B-Instruct-AWQ, Mistral-Nemo) across <b>three QA benchmarks</b> (HotpotQA, MuSiQue, 2WikiMultiHopQA).</li>
+            <li>Designed an <b>exactly balanced origin control</b> that pairs failures by identical trajectory length and swaps their repair origins, removing positional bias by construction rather than by statistical fitting.</li>
+            <li>Found <b>no advantage</b> for perplexity-guided repair in any of 24 primary comparisons (9.73% vs. 11.21% for restart), backed by checksummed trial exports and independent replay for full reproducibility.</li>
           </ul>
           <div class="pub__links">
-            <a class="link-btn" href="papers/uncertainty-guided-repair.pdf" target="_blank" rel="noopener">
+            <a class="link-btn" href="papers/perplexity-guided-repair.pdf" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
               Paper (PDF)
             </a>
