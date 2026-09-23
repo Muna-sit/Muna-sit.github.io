@@ -206,17 +206,17 @@
             <span class="tag">ICLR 2027</span>
             <span class="tag">LLM Agents</span>
           </div>
-          <h3>A Controlled Test of Perplexity-Based Trajectory Repair: Two Model Families, Three QA Datasets, and an Exactly Balanced Origin Control</h3>
+          <h3>A Length-Matched Control Erases the Apparent Benefit of Perplexity-Guided Trajectory Repair</h3>
           <p class="pub__venue">Submitted to <em>International Conference on Learning Representations (ICLR 2027)</em></p>
           <p class="pub__sum">
             When a multi-step agent fails, does picking the repair point by model uncertainty actually
-            beat just restarting? A prespecified, fully audited study says: not clearly, and that
-            negative result is the finding worth trusting.
+            beat just restarting? A prespecified, fully audited study says no — and a properly powered
+            follow-up confirms the one promising-looking result doesn't survive a fair control either.
           </p>
           <ul class="pub__hl">
             <li>Ran a <b>prespecified, Holm-corrected</b> comparison of highest-perplexity backtracking against restart and positional controls, on <b>two model families</b> (Qwen2.5-32B-Instruct-AWQ, Mistral-Nemo) across <b>three QA benchmarks</b> (HotpotQA, MuSiQue, 2WikiMultiHopQA).</li>
-            <li>Designed an <b>exactly balanced origin control</b> that pairs failures by identical trajectory length and swaps their repair origins, removing positional bias by construction rather than by statistical fitting.</li>
-            <li>Found <b>no advantage</b> for perplexity-guided repair in any of 24 primary comparisons (9.73% vs. 11.21% for restart), backed by checksummed trial exports and independent replay for full reproducibility.</li>
+            <li>Designed an <b>exactly balanced origin control</b> that pairs failures by identical trajectory length and swaps their repair origins; when one cell still looked promising, a <b>confirmatory 1,000-question follow-up</b> with enough resolving power showed that apparent benefit disappears too.</li>
+            <li>Found <b>no advantage</b> for perplexity-guided repair in any primary comparison (9.73% vs. 11.21% for restart), backed by checksummed trial exports and independent replay for full reproducibility.</li>
           </ul>
           <div class="pub__links">
             <a class="link-btn" href="papers/perplexity-guided-repair.pdf" target="_blank" rel="noopener">
